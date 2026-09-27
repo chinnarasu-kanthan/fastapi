@@ -9,6 +9,12 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+
 # Example POST route to add a user
 @app.post("/users/")
 def create_user(email: str, db: Session = Depends(get_db)):
